@@ -62,18 +62,22 @@ const GameInterface = ({ playerConfigs, onQuitGame }) => {
     }
   };
 
-  const handleRollDice = async () => {
+const handleRollDice = async () => {
     if (!gameState || gameState.gameStatus !== 'playing') return;
     
     const currentPlayer = gameState.players[gameState.currentPlayerIndex];
     if (currentPlayer.isAI) return;
 
     try {
+      // Start rolling animation by updating state immediately
+      setGameState(prev => ({ ...prev, isRolling: true }));
+      
       const result = await gameService.rollDice();
       setGameState(result.gameState);
       
       // Check if player has any movable pieces
-      const movablePieces = currentPlayer.pieces.filter(piece => piece.canMove);
+      const updatedPlayer = result.gameState.players[result.gameState.currentPlayerIndex];
+      const movablePieces = updatedPlayer.pieces.filter(piece => piece.canMove);
       if (movablePieces.length === 0) {
         toast.info(`No available moves! ${result.diceValue === 6 ? "You need 6 to start." : "Turn passes."}`);
         
@@ -88,6 +92,8 @@ const GameInterface = ({ playerConfigs, onQuitGame }) => {
       }
     } catch (err) {
       toast.error("Failed to roll dice. Please try again.");
+      // Clear rolling state on error
+      setGameState(prev => ({ ...prev, isRolling: false }));
     }
   };
 

@@ -296,12 +296,13 @@ class GameService {
     return null;
   }
 
-  // Move to next turn
+// Move to next turn
   nextTurn() {
     this.gameState.currentPlayerIndex = 
       (this.gameState.currentPlayerIndex + 1) % this.gameState.players.length;
     this.gameState.turnCount++;
     this.gameState.diceValue = 0;
+    this.gameState.isRolling = false;
   }
 
   // Clear movable pieces
