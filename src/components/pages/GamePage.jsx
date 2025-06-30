@@ -35,13 +35,15 @@ const GamePage = () => {
       );
     
     default:
-      return (
-        <Empty
-          title="Welcome to Dice Dynasty"
-          message="Ready to start your royal conquest on the board?"
-          actionText="Setup New Game"
-          onAction={() => setGameStatus('setup')}
-        />
+return (
+        <div className="min-h-screen bg-gradient-to-br from-background via-surface to-background">
+          <Empty
+            title="Welcome to Ludo Master"
+            message="Ready to start your classic board game adventure?"
+            actionText="Setup New Game"
+            onAction={() => setGameStatus('setup')}
+          />
+        </div>
       );
   }
 };

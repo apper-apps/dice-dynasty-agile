@@ -14,8 +14,8 @@ const GameControls = ({
   const currentPlayer = players[currentPlayerIndex];
 
   if (gameStatus === 'finished') {
-    return (
-      <Card variant="gradient" className="p-6">
+return (
+      <Card variant="ludo" className="p-6">
         <div className="text-center">
           <motion.div
             className="mb-4"
@@ -24,13 +24,11 @@ const GameControls = ({
           >
             <ApperIcon name="Trophy" size={48} className="text-accent mx-auto" />
           </motion.div>
-          
-          <h3 className="text-2xl font-righteous text-white mb-2">
+<h3 className="text-2xl font-fredoka text-gray-800 mb-2">
             Game Over!
           </h3>
-          
-          <p className="text-gray-300 mb-6">
-            Winner: <span className="font-bold" style={{ color: gameState.winner?.color }}>
+<p className="text-gray-700 mb-6 text-lg">
+            Winner: <span className="font-bold text-xl" style={{ color: gameState.winner?.color }}>
               {gameState.winner?.name}
             </span>
           </p>
@@ -58,17 +56,17 @@ const GameControls = ({
     );
   }
 
-  return (
-    <Card variant="gradient" className="p-6">
+return (
+    <Card variant="ludo" className="p-6">
       {/* Current Player Info */}
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold text-white mb-3 flex items-center">
-          <ApperIcon name="User" size={20} className="mr-2 text-accent" />
+<div className="mb-6">
+        <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-center">
+          <ApperIcon name="User" size={20} className="mr-2 text-warning" />
           Current Turn
         </h3>
         
-        <motion.div 
-          className="flex items-center p-4 rounded-xl border-2"
+<motion.div 
+          className="flex items-center p-4 rounded-xl border-3 bg-white bg-opacity-50"
           style={{ 
             borderColor: currentPlayer?.color,
             backgroundColor: `${currentPlayer?.color}20`
@@ -82,11 +80,11 @@ const GameControls = ({
             className="w-6 h-6 rounded-full mr-3 shadow-lg"
             style={{ backgroundColor: currentPlayer?.color }}
           />
-          <div>
-            <div className="font-semibold text-white">
+<div>
+            <div className="font-bold text-gray-800 text-lg">
               {currentPlayer?.name}
             </div>
-            <div className="text-sm text-gray-300">
+            <div className="text-sm text-gray-600 font-medium">
               {currentPlayer?.isAI ? `AI (${currentPlayer.difficulty})` : 'Human Player'}
             </div>
           </div>
@@ -94,9 +92,9 @@ const GameControls = ({
       </div>
 
       {/* Dice Section */}
-      <div className="mb-6">
-        <h4 className="text-md font-semibold text-white mb-3 flex items-center">
-          <ApperIcon name="Dices" size={18} className="mr-2 text-accent" />
+<div className="mb-6">
+        <h4 className="text-md font-bold text-gray-800 mb-3 flex items-center">
+          <ApperIcon name="Dices" size={18} className="mr-2 text-warning" />
           Dice Roll
         </h4>
         
@@ -109,9 +107,9 @@ const GameControls = ({
           />
           
           <div className="text-right">
-            {diceValue > 0 && (
+{diceValue > 0 && (
               <motion.div 
-                className="text-3xl font-bold text-white mb-1"
+                className="text-3xl font-bold text-gray-800 mb-1"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", stiffness: 300 }}
@@ -133,9 +131,9 @@ const GameControls = ({
       </div>
 
       {/* Player Pieces Status */}
-      <div className="mb-6">
-        <h4 className="text-md font-semibold text-white mb-3 flex items-center">
-          <ApperIcon name="Target" size={18} className="mr-2 text-accent" />
+<div className="mb-6">
+        <h4 className="text-md font-bold text-gray-800 mb-3 flex items-center">
+          <ApperIcon name="Target" size={18} className="mr-2 text-warning" />
           Pieces Status
         </h4>
         
@@ -146,12 +144,12 @@ const GameControls = ({
             const piecesInBase = player.pieces.filter(p => p.position === -1).length;
             
             return (
-              <motion.div
+<motion.div
                 key={player.Id}
-                className="flex items-center justify-between p-3 rounded-lg bg-gray-800 border border-gray-700"
+                className="flex items-center justify-between p-3 rounded-lg bg-white border-2"
                 animate={{
-                  borderColor: index === currentPlayerIndex ? player.color : '#374151',
-                  backgroundColor: index === currentPlayerIndex ? `${player.color}10` : '#1f2937'
+                  borderColor: index === currentPlayerIndex ? player.color : '#D1D5DB',
+                  backgroundColor: index === currentPlayerIndex ? `${player.color}15` : '#FFFFFF'
                 }}
                 transition={{ duration: 0.3 }}
               >
@@ -159,13 +157,13 @@ const GameControls = ({
                   <div 
                     className="w-4 h-4 rounded-full mr-2"
                     style={{ backgroundColor: player.color }}
-                  />
-                  <span className="text-sm text-white font-medium">
+/>
+                  <span className="text-sm text-gray-800 font-bold">
                     {player.name}
                   </span>
                 </div>
                 
-                <div className="flex space-x-3 text-xs text-gray-400">
+<div className="flex space-x-3 text-xs text-gray-600 font-medium">
                   <span>Home: {piecesHome}</span>
                   <span>Board: {piecesOnBoard}</span>
                   <span>Base: {piecesInBase}</span>

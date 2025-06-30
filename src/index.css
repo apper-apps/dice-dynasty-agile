@@ -1,78 +1,119 @@
 @import 'react-toastify/dist/ReactToastify.css';
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Open+Sans:wght@400;500;600;700&family=Righteous&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom toast styling */
+/* Ludo King inspired styling */
+body {
+  background: linear-gradient(135deg, #F5F0E8 0%, #E8DCC0 100%);
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Custom toast styling - Ludo King colors */
 .Toastify__toast {
-  border-radius: 12px;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 500;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.8);
 }
 
 .Toastify__toast--success {
-  background: linear-gradient(135deg, #10B981, #059669);
+  background: linear-gradient(135deg, #38A169, #2F855A);
   color: white;
 }
 
 .Toastify__toast--error {
-  background: linear-gradient(135deg, #EF4444, #DC2626);
+  background: linear-gradient(135deg, #E53E3E, #C53030);
   color: white;
 }
 
 .Toastify__toast--info {
-  background: linear-gradient(135deg, #3B82F6, #2563EB);
+  background: linear-gradient(135deg, #3182CE, #2C5282);
   color: white;
 }
 
 .Toastify__progress-bar {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.4);
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - Ludo style */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1E293B;
+  background: #F5F0E8;
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #6366F1, #EC4899);
-  border-radius: 4px;
+  background: linear-gradient(135deg, #D69E2E, #B7791F);
+  border-radius: 6px;
+  border: 2px solid #F5F0E8;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #4F46E5, #DB2777);
+  background: linear-gradient(135deg, #B7791F, #975A16);
 }
 
-/* Game board styling */
+/* Ludo board styling */
 .board-cell {
   transition: all 0.3s ease;
+  border: 1px solid #D4B896;
 }
 
 .board-cell:hover {
-  background: rgba(99, 102, 241, 0.1);
-  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  background: rgba(255, 215, 0, 0.1);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+  transform: scale(1.02);
 }
 
 .safe-zone {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.2));
-  box-shadow: inset 0 0 10px rgba(16, 185, 129, 0.3);
+  background: linear-gradient(135deg, rgba(255, 228, 181, 0.6), rgba(255, 218, 143, 0.8));
+  box-shadow: inset 0 0 8px rgba(218, 165, 32, 0.5);
+  border: 2px solid #DAA520;
 }
 
+.home-zone-red {
+  background: linear-gradient(135deg, rgba(229, 62, 62, 0.2), rgba(197, 48, 48, 0.3));
+  border: 2px solid #E53E3E;
+}
+
+.home-zone-blue {
+  background: linear-gradient(135deg, rgba(49, 130, 206, 0.2), rgba(44, 82, 130, 0.3));
+  border: 2px solid #3182CE;
+}
+
+.home-zone-green {
+  background: linear-gradient(135deg, rgba(56, 161, 105, 0.2), rgba(47, 133, 90, 0.3));
+  border: 2px solid #38A169;
+}
+
+.home-zone-yellow {
+  background: linear-gradient(135deg, rgba(214, 158, 46, 0.2), rgba(183, 121, 31, 0.3));
+  border: 2px solid #D69E2E;
+}
+
+/* Ludo piece styling */
 .piece {
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .piece:hover {
-  transform: scale(1.1);
-  filter: brightness(1.2);
+  transform: scale(1.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
 }
 
+.piece.active {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Traditional dice styling */
 .dice-container {
   perspective: 1000px;
 }
@@ -80,10 +121,14 @@
 .dice {
   transform-style: preserve-3d;
   transition: transform 0.3s ease;
+  background: linear-gradient(135deg, #FFFFFF, #F0F0F0);
+  border: 2px solid #CCCCCC;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .dice:hover {
-  transform: rotateX(15deg) rotateY(15deg);
+  transform: rotateX(10deg) rotateY(10deg) scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Animation classes */
@@ -100,41 +145,47 @@
   animation: dice-roll 0.8s ease-out;
 }
 
-/* Confetti animation */
+/* Confetti animation - Ludo colors */
 .confetti {
   position: absolute;
-  width: 10px;
-  height: 10px;
-  background: linear-gradient(45deg, #6366F1, #EC4899, #F59E0B);
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(45deg, #E53E3E, #3182CE, #38A169, #D69E2E);
   animation: confetti 2s ease-out infinite;
+  border-radius: 2px;
 }
 
-/* Victory modal */
+/* Victory modal - warm background */
 .victory-modal {
-  backdrop-filter: blur(20px);
-  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(15px);
+  background: rgba(245, 240, 232, 0.95);
 }
 
-/* Gradient text */
+/* Ludo gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #6366F1, #EC4899, #F59E0B);
-  background-size: 200% 200%;
+  background: linear-gradient(135deg, #E53E3E, #3182CE, #38A169, #D69E2E);
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradient-shift 3s ease infinite;
+  animation: gradient-shift 4s ease infinite;
 }
 
 @keyframes gradient-shift {
   0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
   100% { background-position: 0% 50%; }
 }
 
-/* Player indicators */
+/* Player indicators - Ludo style */
 .player-indicator {
   position: relative;
   overflow: hidden;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .player-indicator::before {
@@ -144,26 +195,28 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s;
 }
 
 .player-indicator.active::before {
   left: 100%;
 }
 
-/* Game board glow effects */
+/* Home base styling */
 .home-base {
   position: relative;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
 .home-base::after {
   content: '';
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
   background: linear-gradient(45deg, currentColor, transparent, currentColor);
   border-radius: inherit;
   z-index: -1;
@@ -172,5 +225,23 @@
 }
 
 .home-base.active::after {
-  opacity: 0.5;
+  opacity: 0.6;
+}
+
+/* Traditional Ludo board pattern */
+.board-pattern {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.2) 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.2) 2px, transparent 2px);
+  background-size: 20px 20px;
+}
+
+/* Token shine effect */
+.token-shine {
+  animation: token-shine 1.5s ease-in-out infinite;
+}
+
+/* Board glow for active elements */
+.board-glow {
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.6), inset 0 0 10px rgba(255, 215, 0, 0.2);
 }

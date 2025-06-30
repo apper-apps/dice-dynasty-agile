@@ -4,28 +4,43 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  theme: {
+theme: {
     extend: {
       colors: {
-        primary: '#6366F1',
-        secondary: '#EC4899',
-        accent: '#F59E0B',
-        surface: '#1E293B',
-        background: '#0F172A',
-        success: '#10B981',
-        warning: '#F59E0B',
-        error: '#EF4444',
-        info: '#3B82F6',
+        // Ludo King inspired color palette
+        primary: '#FF4444', // Red player
+        secondary: '#4444FF', // Blue player  
+        accent: '#44FF44', // Green player
+        warning: '#FFDD44', // Yellow player
+        surface: '#FFF8E7', // Warm cream background
+        background: '#F5F0E8', // Light beige
+        cardBg: '#FFFFFF', // Pure white for cards
+        boardBg: '#E8DCC0', // Board background
+        success: '#44AA44',
+        error: '#DD4444',
+        info: '#4488FF',
+        // Traditional Ludo colors
+        ludoRed: '#E53E3E',
+        ludoBlue: '#3182CE', 
+        ludoGreen: '#38A169',
+        ludoYellow: '#D69E2E',
+        // Board elements
+        pathCell: '#FFFFFF',
+        safeZone: '#FFE4B5',
+        homeZone: '#F0F8F0',
       },
       fontFamily: {
         righteous: ['Righteous', 'cursive'],
-        sans: ['DM Sans', 'sans-serif'],
+        fredoka: ['Fredoka One', 'cursive'],
+        sans: ['Open Sans', 'sans-serif'],
       },
       animation: {
         'dice-roll': 'roll 0.8s ease-out',
         'piece-bounce': 'bounce 0.6s ease-out',
         'capture-burst': 'burst 0.4s ease-out',
         'confetti': 'confetti 2s ease-out infinite',
+        'glow-pulse': 'glowPulse 2s ease-in-out infinite',
+        'token-shine': 'tokenShine 1.5s ease-in-out infinite',
       },
       keyframes: {
         roll: {
@@ -44,6 +59,20 @@ export default {
           '0%': { transform: 'translateY(0) rotateZ(0deg)', opacity: '1' },
           '100%': { transform: 'translateY(-100vh) rotateZ(720deg)', opacity: '0' },
         },
+        glowPulse: {
+          '0%, 100%': { boxShadow: '0 0 5px rgba(255, 215, 0, 0.6)' },
+          '50%': { boxShadow: '0 0 20px rgba(255, 215, 0, 0.9)' },
+        },
+        tokenShine: {
+          '0%, 100%': { transform: 'scale(1)', boxShadow: '0 4px 8px rgba(0,0,0,0.2)' },
+          '50%': { transform: 'scale(1.05)', boxShadow: '0 6px 12px rgba(0,0,0,0.3)' },
+        },
+      },
+      boxShadow: {
+        'ludo': '0 4px 12px rgba(0, 0, 0, 0.15)',
+        'ludo-lg': '0 8px 25px rgba(0, 0, 0, 0.2)',
+        'piece': '0 2px 8px rgba(0, 0, 0, 0.25)',
+        'board': 'inset 0 2px 4px rgba(0, 0, 0, 0.1)',
       },
     },
   },

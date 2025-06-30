@@ -7,17 +7,18 @@ const Card = ({
   hover = true,
   ...props 
 }) => {
-  const baseClasses = "rounded-2xl shadow-lg transition-all duration-300";
+const baseClasses = "rounded-2xl shadow-ludo transition-all duration-300 border-2";
   
   const variants = {
-    default: "bg-surface border border-gray-700",
-    gradient: "bg-gradient-to-br from-surface to-gray-800 border border-gray-600",
-    glass: "bg-white bg-opacity-10 backdrop-blur-lg border border-white border-opacity-20",
-    primary: "bg-gradient-to-br from-primary to-secondary text-white",
-    accent: "bg-gradient-to-br from-accent to-warning text-white"
+    default: "bg-cardBg border-gray-300",
+    gradient: "bg-gradient-to-br from-cardBg to-surface border-warning",
+    glass: "bg-cardBg bg-opacity-90 backdrop-blur-lg border-white border-opacity-60",
+    primary: "bg-gradient-to-br from-primary to-ludoRed text-white border-white",
+    accent: "bg-gradient-to-br from-accent to-ludoGreen text-white border-white",
+    ludo: "bg-cardBg border-warning shadow-ludo-lg"
   };
 
-  const hoverClasses = hover ? "hover:shadow-xl hover:scale-105" : "";
+  const hoverClasses = hover ? "hover:shadow-ludo-lg hover:scale-105 hover:border-opacity-80" : "";
   
   const classes = `${baseClasses} ${variants[variant]} ${hoverClasses} ${className}`;
 

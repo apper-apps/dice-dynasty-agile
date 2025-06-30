@@ -160,18 +160,30 @@ const GameBoard = ({ gameState, onPieceClick }) => {
     );
   };
 
-  const getCellStyle = (cell) => {
-    const baseStyle = "border border-gray-600";
+const getCellStyle = (cell) => {
+    const baseStyle = "border-2 border-gray-400 transition-all duration-200";
     
     switch (cell.type) {
       case 'path':
-        return `${baseStyle} bg-gray-700 hover:bg-gray-600`;
+        return `${baseStyle} bg-pathCell hover:bg-safeZone hover:border-warning`;
       case 'home':
-        return `${baseStyle} bg-opacity-30 border-opacity-50`;
+        const homeClass = {
+          1: 'home-zone-red',
+          2: 'home-zone-blue', 
+          3: 'home-zone-green',
+          4: 'home-zone-yellow'
+        }[cell.playerId] || 'bg-gray-200';
+        return `${baseStyle} ${homeClass}`;
       case 'homeColumn':
-        return `${baseStyle} bg-opacity-20 border-opacity-40`;
+        const columnClass = {
+          1: 'home-zone-red',
+          2: 'home-zone-blue',
+          3: 'home-zone-green', 
+          4: 'home-zone-yellow'
+        }[cell.playerId] || 'bg-gray-200';
+        return `${baseStyle} ${columnClass} border-opacity-60`;
       default:
-        return `${baseStyle} bg-gray-800`;
+        return `${baseStyle} bg-surface`;
     }
   };
 
@@ -221,9 +233,9 @@ const GameBoard = ({ gameState, onPieceClick }) => {
     return pathMap[position] || null;
   };
 
-  return (
+return (
     <motion.div 
-      className="bg-gradient-to-br from-gray-900 to-gray-800 p-8 rounded-3xl shadow-2xl border border-gray-700"
+      className="bg-gradient-to-br from-cardBg to-surface p-8 rounded-3xl shadow-ludo-lg border-4 border-warning board-pattern"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
@@ -251,12 +263,13 @@ const GameBoard = ({ gameState, onPieceClick }) => {
       </div>
 
       {/* Board center logo */}
+{/* Board center logo */}
       <motion.div
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-2xl border-4 border-white border-opacity-20"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-gradient-to-br from-warning to-ludoYellow rounded-full flex items-center justify-center shadow-ludo-lg border-4 border-white"
         animate={{ rotate: 360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
       >
-        <span className="text-white font-righteous text-lg">DD</span>
+        <span className="text-white font-fredoka text-xl drop-shadow-md">LM</span>
       </motion.div>
     </motion.div>
   );

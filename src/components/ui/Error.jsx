@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import ApperIcon from '@/components/ApperIcon';
 
 const Error = ({ message = "Something went wrong", onRetry }) => {
-  return (
+return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-background via-surface to-background p-8">
       <motion.div
         className="text-center max-w-md"
@@ -11,8 +11,8 @@ const Error = ({ message = "Something went wrong", onRetry }) => {
         transition={{ duration: 0.5 }}
       >
         {/* Error icon */}
-        <motion.div
-          className="mx-auto w-24 h-24 bg-gradient-to-br from-error to-red-600 rounded-full flex items-center justify-center mb-6 shadow-2xl"
+<motion.div
+          className="mx-auto w-24 h-24 bg-gradient-to-br from-error to-red-600 rounded-full flex items-center justify-center mb-6 shadow-ludo-lg border-4 border-white"
           animate={{ 
             scale: [1, 1.05, 1],
             rotate: [0, -5, 5, 0] 
@@ -26,20 +26,19 @@ const Error = ({ message = "Something went wrong", onRetry }) => {
           <ApperIcon name="AlertTriangle" size={40} className="text-white" />
         </motion.div>
 
-        {/* Error message */}
-        <h2 className="text-3xl font-righteous text-white mb-4">
+{/* Error message */}
+        <h2 className="text-3xl font-fredoka text-gray-800 mb-4">
           Oops! Game Error
         </h2>
-        
-        <p className="text-gray-300 text-lg mb-8 leading-relaxed">
+<p className="text-gray-700 text-lg mb-8 leading-relaxed font-medium">
           {message}
         </p>
 
         {/* Retry button */}
         {onRetry && (
           <motion.button
-            onClick={onRetry}
-            className="group bg-gradient-to-r from-primary to-secondary px-8 py-4 rounded-xl text-white font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+onClick={onRetry}
+            className="group bg-gradient-to-r from-primary to-ludoRed px-8 py-4 rounded-xl text-white font-bold text-lg shadow-ludo-lg hover:shadow-2xl transition-all duration-300 border-2 border-white"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >

@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { motion } from "framer-motion";
+import React, { useState } from "react";
 
 const Dice = ({ value = 1, isRolling = false, onClick, disabled = false, size = 'lg' }) => {
   const [isPressed, setIsPressed] = useState(false);
@@ -11,15 +11,15 @@ const Dice = ({ value = 1, isRolling = false, onClick, disabled = false, size = 
     xl: 'w-24 h-24 text-4xl'
   };
 
-  const getDiceFace = (num) => {
+const getDiceFace = (num) => {
     const faces = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
     return faces[num - 1] || '⚀';
   };
 
   return (
     <motion.div
-      className={`${sizes[size]} bg-gradient-to-br from-accent to-warning rounded-xl shadow-2xl flex items-center justify-center cursor-pointer select-none relative overflow-hidden ${
-        disabled ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-accent/30'
+      className={`${sizes[size]} bg-white rounded-xl shadow-ludo-lg flex items-center justify-center cursor-pointer select-none relative overflow-hidden border-2 border-gray-300 ${
+        disabled ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-2xl hover:border-warning'
       }`}
       onClick={!disabled ? onClick : undefined}
       onMouseDown={() => !disabled && setIsPressed(true)}
@@ -42,10 +42,10 @@ const Dice = ({ value = 1, isRolling = false, onClick, disabled = false, size = 
         transformStyle: 'preserve-3d',
         perspective: '1000px'
       }}
-    >
+>
       {/* Dice face */}
       <motion.div
-        className="text-white font-bold"
+        className="text-gray-900 font-bold"
         animate={{
           opacity: isRolling ? [1, 0.3, 1] : 1,
           scale: isRolling ? [1, 0.8, 1] : 1
@@ -55,19 +55,18 @@ const Dice = ({ value = 1, isRolling = false, onClick, disabled = false, size = 
         {getDiceFace(value)}
       </motion.div>
 
-      {/* Shine effect */}
+{/* Shine effect */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-white via-transparent to-transparent opacity-20 rounded-xl"
+        className="absolute inset-0 bg-gradient-to-br from-white via-transparent to-transparent opacity-30 rounded-xl"
         animate={{
-          opacity: isPressed ? 0.1 : 0.2,
+          opacity: isPressed ? 0.1 : 0.3,
           scale: isPressed ? 0.9 : 1
         }}
       />
-
-      {/* Rolling indicator */}
+{/* Rolling indicator */}
       {isRolling && (
         <motion.div
-          className="absolute inset-0 border-4 border-white border-t-transparent rounded-xl"
+          className="absolute inset-0 border-4 border-warning border-t-transparent rounded-xl"
           animate={{ rotate: 360 }}
           transition={{ duration: 0.8, ease: "linear" }}
         />

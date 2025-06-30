@@ -163,7 +163,7 @@ const GameInterface = ({ playerConfigs, onQuitGame }) => {
     return <Error message="Failed to load game state" onRetry={retryGame} />;
   }
 
-  return (
+return (
     <div className="min-h-screen bg-gradient-to-br from-background via-surface to-background p-4">
       <div className="max-w-7xl mx-auto">
         {/* Game Header */}
@@ -172,11 +172,11 @@ const GameInterface = ({ playerConfigs, onQuitGame }) => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-        >
-          <h1 className="text-4xl font-righteous gradient-text mb-2">
-            Dice Dynasty
+>
+          <h1 className="text-5xl font-fredoka gradient-text mb-2 drop-shadow-lg">
+            Ludo Master
           </h1>
-          <p className="text-gray-300">
+          <p className="text-gray-700 text-lg font-semibold">
             Turn {gameState.turnCount + 1} • {gameState.gameStatus === 'playing' ? 'Game in Progress' : 'Game Over'}
           </p>
         </motion.div>
@@ -209,13 +209,13 @@ const GameInterface = ({ playerConfigs, onQuitGame }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-          >
-            <div className="inline-flex items-center px-6 py-3 bg-gray-800 rounded-full border border-gray-600">
+>
+            <div className="inline-flex items-center px-8 py-4 bg-cardBg rounded-full border-3 border-warning shadow-ludo-lg">
               <div 
-                className="w-4 h-4 rounded-full mr-3"
+                className="w-6 h-6 rounded-full mr-4 border-2 border-white shadow-piece"
                 style={{ backgroundColor: gameState.players[gameState.currentPlayerIndex]?.color }}
               />
-              <span className="text-white">
+              <span className="text-gray-800 font-semibold text-lg">
                 {gameState.players[gameState.currentPlayerIndex]?.isAI 
                   ? "AI is thinking..." 
                   : gameState.diceValue > 0 
