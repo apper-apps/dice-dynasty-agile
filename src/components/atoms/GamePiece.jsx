@@ -74,9 +74,9 @@ style={{
             opacity: [0.6, 0.3, 0.6]
           }}
           transition={{ duration: 1.2, repeat: Infinity }}
-        />
+/>
       )}
+    </motion.div>
   );
 };
-
 export default GamePiece;
