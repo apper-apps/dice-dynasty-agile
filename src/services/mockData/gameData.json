@@ -1,0 +1,96 @@
+{
+  "players": [
+    {
+      "Id": 1,
+      "name": "Player 1",
+      "color": "#6366F1",
+      "colorName": "Blue",
+      "isAI": false,
+      "difficulty": "none",
+      "homePositions": [1, 2, 7, 8],
+      "startPosition": 13,
+      "homeColumn": [52, 53, 54, 55, 56]
+    },
+    {
+      "Id": 2,
+      "name": "Player 2", 
+      "color": "#EC4899",
+      "colorName": "Pink",
+      "isAI": false,
+      "difficulty": "none",
+      "homePositions": [10, 11, 16, 17],
+      "startPosition": 26,
+      "homeColumn": [57, 58, 59, 60, 61]
+    },
+    {
+      "Id": 3,
+      "name": "Player 3",
+      "color": "#10B981", 
+      "colorName": "Green",
+      "isAI": false,
+      "difficulty": "none",
+      "homePositions": [154, 155, 160, 161],
+      "startPosition": 39,
+      "homeColumn": [62, 63, 64, 65, 66]
+    },
+    {
+      "Id": 4,
+      "name": "Player 4",
+      "color": "#F59E0B",
+      "colorName": "Yellow", 
+      "isAI": false,
+      "difficulty": "none",
+      "homePositions": [145, 146, 151, 152],
+      "startPosition": 0,
+      "homeColumn": [67, 68, 69, 70, 71]
+    }
+  ],
+  "boardLayout": {
+    "totalCells": 72,
+    "mainPath": 52,
+    "safeZones": [13, 26, 39, 0, 8, 21, 34, 47],
+    "starPositions": [8, 21, 34, 47],
+    "homeColumns": {
+      "player1": [52, 53, 54, 55, 56],
+      "player2": [57, 58, 59, 60, 61], 
+      "player3": [62, 63, 64, 65, 66],
+      "player4": [67, 68, 69, 70, 71]
+    }
+  },
+  "gameRules": {
+    "maxPlayers": 4,
+    "minPlayers": 2,
+    "piecesPerPlayer": 4,
+    "winCondition": "all_pieces_home",
+    "rollToStart": 6,
+    "extraTurnOn6": true,
+    "captureRules": {
+      "enabled": true,
+      "sendToHome": true,
+      "extraTurn": false
+    }
+  },
+  "aiDifficulties": [
+    {
+      "Id": 1,
+      "name": "Easy",
+      "description": "Makes random moves",
+      "strategy": "random",
+      "thinkTime": 1000
+    },
+    {
+      "Id": 2, 
+      "name": "Medium",
+      "description": "Balanced strategy",
+      "strategy": "balanced", 
+      "thinkTime": 1500
+    },
+    {
+      "Id": 3,
+      "name": "Hard",
+      "description": "Aggressive and strategic",
+      "strategy": "aggressive",
+      "thinkTime": 2000
+    }
+  ]
+}
